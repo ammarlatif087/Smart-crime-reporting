@@ -1,5 +1,6 @@
 import 'package:crime_reporting_app/presentation/view_models/admin_dashborad_view_model.dart';
 import 'package:crime_reporting_app/presentation/view_models/manage_report_view_model.dart';
+import 'package:crime_reporting_app/presentation/view_models/register_fir_view_model.dart';
 
 import '../presentation/view_models/auth_view_model.dart';
 import 'index.dart';
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (ctx) => AuthViewModel()),
           ChangeNotifierProvider(create: (ctx) => AdminDashboradViewModel()),
           ChangeNotifierProvider(create: (ctx) => ManageReportViewModel()),
+          ChangeNotifierProvider(create: (ctx) => RegisterFirViewModel()),
         ],
         child: const GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Vital weight loss',
+          title: 'Crime Reporting App',
           // theme: getAppTheme(context),
           // home: const MyHomePage(title: 'Flutter Demo Home Page'),
           initialRoute: Routes.splashRoute,
