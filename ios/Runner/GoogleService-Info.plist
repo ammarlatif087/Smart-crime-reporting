@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>113506878804-r346aivr607g276sn6rru2njjd657kkb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.113506878804-r346aivr607g276sn6rru2njjd657kkb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBGpgH3Zj9ddSs3C6o--QmlyonF_1Rq6RE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>113506878804</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.crimeReportingApp</string>
+	<key>PROJECT_ID</key>
+	<string>crime-reporting-app-35246</string>
+	<key>STORAGE_BUCKET</key>
+	<string>crime-reporting-app-35246.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:113506878804:ios:b9b75a9399ef680dce34c1</string>
+</dict>
+</plist>

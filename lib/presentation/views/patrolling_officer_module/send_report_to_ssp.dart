@@ -1,18 +1,17 @@
-import 'package:crime_reporting_app/presentation/common/app_button.dart';
-
 import '../../../app/index.dart';
 import '../../common/app_bar.dart';
+import '../../common/app_button.dart';
 import '../../common/textfield_widget.dart';
 
-class ReportCrimeView extends StatelessWidget {
-  const ReportCrimeView({super.key});
+class SendReportToSsp extends StatelessWidget {
+  const SendReportToSsp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(
-          title: 'Report Crime',
+          title: 'Report Crime To SSP',
         ),
         body: SingleChildScrollView(
           child: Padding(

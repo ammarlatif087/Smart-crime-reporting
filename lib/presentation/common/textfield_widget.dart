@@ -10,6 +10,7 @@ class TextfieldWidget extends StatelessWidget {
   final bool? isFilled;
   final Color? filledColor;
   final Widget? prefixIcon;
+  final bool? readOnly;
 
   final String? Function(String? value)? validator;
   final void Function(String? newValue)? onSave;
@@ -31,6 +32,7 @@ class TextfieldWidget extends StatelessWidget {
     this.isFilled,
     this.filledColor,
     this.prefixIcon,
+    this.readOnly,
   });
 
   @override
@@ -39,6 +41,7 @@ class TextfieldWidget extends StatelessWidget {
       controller: controller,
       obscureText: obscureText ?? false,
       keyboardType: keyboardType,
+      readOnly: readOnly ?? false,
       style: textStyle ??
           TextStyleManager.popinsLight(
             fontSize: 16.sp,

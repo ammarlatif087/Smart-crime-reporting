@@ -1,5 +1,6 @@
 import 'package:crime_reporting_app/app/index.dart';
 import 'package:crime_reporting_app/presentation/view_models/auth_view_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../common/app_button.dart';
 import '../../common/textfield_widget.dart';
@@ -28,19 +29,59 @@ class SignUpView extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(18.r),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Utils.popinBoldText(
                         'Sign Up',
                         fontSize: 30.sp,
                       ),
                       20.spaceY,
-                      CircleAvatar(
-                        radius: 30.r,
-                        child: const Icon(Icons.person),
+                      InkWell(
+                        onTap: () => viewModel.pickImage(ImageSource.gallery),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors
+                                .grey, // Customize the background color of the CircleAvatar
+                          ),
+                          child: Stack(
+                            children: [
+                              viewModel.image != null
+                                  ? CircleAvatar(
+                                      radius: 30.r,
+                                      backgroundImage:
+                                          FileImage(viewModel.image!),
+                                    )
+                                  : CircleAvatar(
+                                      radius: 30.r,
+                                      child: const Icon(Icons.person),
+                                    ),
+                              if (viewModel.image != null)
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: InkWell(
+                                    onTap: () => viewModel
+                                        .clearImage(), // Add the function to clear the selected image
+                                    child: CircleAvatar(
+                                      radius: 15.r,
+                                      backgroundColor: ColorManager
+                                          .black, // Customize the background color of the cross icon
+                                      child: const Icon(
+                                        Icons.close,
+                                        size: 20,
+                                        color: Colors
+                                            .white, // Customize the color of the cross icon
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
                       ),
-                      20.spaceY,
+                      10.spaceY,
                       DropdownButtonFormField<String>(
                         value: viewModel.selectedUser.isEmpty
                             ? null
@@ -88,47 +129,37 @@ class SignUpView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      20.spaceY,
+                      10.spaceY,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             width: 150.w,
                             child: TextfieldWidget(
-                              controller: viewModel.emailController,
-                              keyboardType: TextInputType.emailAddress,
+                              controller: viewModel.fNameCtrl,
+                              keyboardType: TextInputType.name,
                               hintText: 'First Name',
                               prefixIcon: Icon(
                                 Icons.person,
                                 color: ColorManager.darkGrey,
                               ),
-                              validator: (value) => value!.isValidEmail()
-                                  ? null
-                                  : 'Invalid Email',
-                              onChange: (newValue) =>
-                                  viewModel.onEmailChange(newValue),
                             ),
                           ),
                           SizedBox(
                             width: 150.w,
                             child: TextfieldWidget(
-                              controller: viewModel.emailController,
+                              controller: viewModel.lNameCtrl,
                               keyboardType: TextInputType.emailAddress,
                               hintText: 'Last Name',
                               prefixIcon: Icon(
                                 Icons.person,
                                 color: ColorManager.darkGrey,
                               ),
-                              validator: (value) => value!.isValidEmail()
-                                  ? null
-                                  : 'Invalid Email',
-                              onChange: (newValue) =>
-                                  viewModel.onEmailChange(newValue),
                             ),
                           ),
                         ],
                       ),
-                      20.spaceY,
+                      10.spaceY,
                       TextfieldWidget(
                         controller: viewModel.emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -142,7 +173,17 @@ class SignUpView extends StatelessWidget {
                         onChange: (newValue) =>
                             viewModel.onEmailChange(newValue),
                       ),
-                      20.spaceY,
+                      10.spaceY,
+                      TextfieldWidget(
+                        controller: viewModel.cnicCtrl,
+                        keyboardType: TextInputType.text,
+                        hintText: 'Enter Cnic',
+                        prefixIcon: Icon(
+                          Icons.numbers,
+                          color: ColorManager.darkGrey,
+                        ),
+                      ),
+                      10.spaceY,
                       TextfieldWidget(
                         controller: viewModel.passController,
                         obscureText: viewModel.isPassObs,
@@ -169,16 +210,12 @@ class SignUpView extends StatelessWidget {
                           return null;
                         },
                       ),
-                      20.spaceY,
+                      10.spaceY,
                       TextfieldWidget(
                         controller: viewModel.passController,
                         obscureText: viewModel.isPassObs,
                         keyboardType: TextInputType.name,
                         hintText: 'confirm your password',
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: ColorManager.darkGrey,
-                        ),
                         suffixIcon: GestureDetector(
                           onTap: () => viewModel.showPassword(),
                           child: Icon(
@@ -196,49 +233,52 @@ class SignUpView extends StatelessWidget {
                           return null;
                         },
                       ),
-                      20.spaceY,
+                      10.spaceY,
                       InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(),
-                            borderRadius: BorderRadius.circular(15.r),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w),
-                            child: Row(
-                              children: [
-                                Utils.popinBoldText('Upload a valid ID Card'),
-                                const Spacer(),
-                                Icon(
-                                  Icons.image,
-                                  color: ColorManager.darkGrey,
-                                  size: 25.sp,
-                                ),
-                              ],
+                        onTap: () {
+                          viewModel.pickIdCard(ImageSource.camera);
+                        },
+                        child: Visibility(
+                          visible: viewModel.selectedUser != 'user' ||
+                              viewModel.selectedUser.isEmpty,
+                          child: Container(
+                            height: 60.h,
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(15.r),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 170.w,
+                                    child: Utils.popinMedText(
+                                      viewModel.idImage != null
+                                          ? viewModel.idImage!.path.toString()
+                                          : 'Upload a valid ID Card',
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Icon(
+                                    Icons.image,
+                                    color: ColorManager.darkGrey,
+                                    size: 25.sp,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      20.spaceY,
+                      10.spaceY,
                       Center(
                         child: AppButton(
                           text: 'Sign Up',
-                          onPress: () {
-                            // switch (viewModel.selectedUser) {
-                            //   case 'admin':
-                            //     Get.toNamed(Routes.adminDashboardRoute);
-                            //     break;
-                            //   case 'user':
-                            //     //   Get.toNamed(Routes.adminDashboardRoute);
-
-                            //     break;
-                            //   default:
-                            //     Utils.snackBar(context, 'invalid route');
-                            //     // Handle other cases or show an error message
-                            //     break;
-                            // }
+                          onPress: () async {
+                            viewModel.signupwithFirebase();
+                            Get.offAndToNamed(Routes.loginRoute);
                           },
                         ),
                       ),

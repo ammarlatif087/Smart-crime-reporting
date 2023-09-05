@@ -4,12 +4,14 @@ class DashboardCard extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  final Widget? buttonContent;
 
   const DashboardCard({
     super.key,
     required this.icon,
     required this.label,
     required this.onTap,
+    this.buttonContent,
   });
 
   @override
@@ -35,6 +37,9 @@ class DashboardCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
+            30.spaceY,
+            // const Spacer(),
+            buttonContent ?? const SizedBox()
           ],
         ),
       ),

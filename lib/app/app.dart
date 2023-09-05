@@ -1,6 +1,7 @@
 import 'package:crime_reporting_app/presentation/view_models/admin_dashborad_view_model.dart';
 import 'package:crime_reporting_app/presentation/view_models/manage_report_view_model.dart';
 import 'package:crime_reporting_app/presentation/view_models/register_fir_view_model.dart';
+import 'package:crime_reporting_app/presentation/view_models/send_feedback_view_model.dart';
 
 import '../presentation/view_models/auth_view_model.dart';
 import 'index.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (ctx) => AdminDashboradViewModel()),
           ChangeNotifierProvider(create: (ctx) => ManageReportViewModel()),
           ChangeNotifierProvider(create: (ctx) => RegisterFirViewModel()),
+          ChangeNotifierProvider(create: (ctx) => SendFeedbackViewModel()),
         ],
         child: const GetMaterialApp(
           debugShowCheckedModeBanner: false,

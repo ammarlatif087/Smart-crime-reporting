@@ -39,7 +39,14 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^5.1.0
   flutter_screenutil: ^5.8.4
-  flutter_rating_bar: ^4.0.1
+  syncfusion_flutter_charts: ^22.1.39
+  firebase_auth: ^4.7.1
+  firebase_core: ^2.15.0
+  firebase_database: ^10.2.4
+  firebase_storage: ^11.2.5
+  image_picker: ^1.0.1
+
+
 
 dev_dependencies:
   flutter_test:

@@ -4,8 +4,8 @@ import '../../../app/index.dart';
 import '../../common/app_bar.dart';
 import '../../common/textfield_widget.dart';
 
-class ReportCrimeView extends StatelessWidget {
-  const ReportCrimeView({super.key});
+class SendCrimeReportView extends StatelessWidget {
+  const SendCrimeReportView({super.key});
 
   @override
   Widget build(BuildContext context) {
